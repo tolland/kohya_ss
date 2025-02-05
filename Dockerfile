@@ -45,7 +45,11 @@ ARG TARGETPLATFORM
 RUN --mount=type=cache,id=apt-$TARGETARCH$TARGETVARIANT,sharing=locked,target=/var/cache/apt \
     --mount=type=cache,id=aptlists-$TARGETARCH$TARGETVARIANT,sharing=locked,target=/var/lib/apt/lists \
     if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    apt-get update && apt-get install -y --no-install-recommends zlib1g-dev libjpeg62-turbo-dev build-essential && \
+    apt-get update && apt-get install -y \
+      --no-install-recommends \
+      zlib1g-dev \
+      libjpeg62-turbo-dev \
+      build-essential && \
     pip uninstall -y pillow && \
     CC="cc -mavx2" pip install -U --force-reinstall pillow-simd; \
     fi
