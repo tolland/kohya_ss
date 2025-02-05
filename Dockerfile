@@ -78,7 +78,11 @@ RUN --mount=type=cache,id=apt-$TARGETARCH$TARGETVARIANT,sharing=locked,target=/v
     # To decrease the image size, we opt to install only the necessary libraries.
     # Here is the package list for your reference: https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64
     # !If you experience any related issues, replace the following line with `cuda-12-1` to obtain the complete CUDA package.
-    cuda-cudart-12-1=${NV_CUDA_CUDART_VERSION} ${NV_CUDA_COMPAT_PACKAGE} libcusparse-12-1 libnvjitlink-12-1
+    cuda-cudart-12-1=${NV_CUDA_CUDART_VERSION} \
+      ${NV_CUDA_COMPAT_PACKAGE} \
+      libcusparse-12-1 \
+      libnvjitlink-12-1 \
+        vim
 
 # Install runtime dependencies
 RUN --mount=type=cache,id=apt-$TARGETARCH$TARGETVARIANT,sharing=locked,target=/var/cache/apt \
